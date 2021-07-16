@@ -25,6 +25,7 @@
     "apollo-server": "^3.0.0",
     "graphql": "^15.5.1",
     "graphql-tag": "^2.12.5",
+    "lodash": "^4.17.21",
     "nodemon": "^2.0.12",
     "react-apollo": "^3.1.5"
   }
