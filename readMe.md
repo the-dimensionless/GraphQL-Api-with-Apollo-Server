@@ -10,6 +10,8 @@ the queries, types, fields and directives it supports.
 * Resolver : A function that is responsible for populating the data for a single field
 in your schema.
 * ResolverMap: An object that holds Type -> Field -> Resolver functions
+* DataSource
+* typedefs
 
 
 ### Field level directives
@@ -19,3 +21,5 @@ in your schema.
 * @specifiedBy (String!) -> Exposes a URL that specifies the behaviour of this scalar.
 
 ### Custom level directives (todo)
+
+
