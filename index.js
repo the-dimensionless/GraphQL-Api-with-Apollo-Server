@@ -1,6 +1,6 @@
 const {ApolloServer, gql} = require('apollo-server');
 
-const sessions = require('./data/sessions.json');
+const SessionAPI = require('./datasources/sessions');
 
 
 const typeDefs = gql`
@@ -19,18 +19,25 @@ const typeDefs = gql`
         track: String @deprecated(reason: "Dummy reason for deprecation"),
         level: String
     }`
-    console.log('1');
-
 
 const resolvers = {
     Query: {
-        sessions: () => {
-            return sessions;
+        sessions: (parent, args, context, info) => {
+            const {dataSources} = context;
+            //console.log(`parent : ${parent}`);
+            //console.log(`args : ${JSON.stringify(args)}`);
+            console.log(`context : ${JSON.stringify(context)}`);
+            //console.log(`info : ${JSON.stringify(info)}`);
+            return dataSources.sessionAPI.getSessions();
         }
     }
 }
 
-const server = new ApolloServer({typeDefs, resolvers});
+const dataSources = () => ({
+    sessionAPI: new SessionAPI()
+});
+
+const server = new ApolloServer({typeDefs, resolvers, dataSources});
 
 server
     .listen({
