@@ -1,5 +1,8 @@
 const {ApolloServer, gql} = require('apollo-server');
 
+const sessions = require('./data/sessions.json');
+
+
 const typeDefs = gql`
     type Query {
         sessions: [Session]
@@ -18,7 +21,16 @@ const typeDefs = gql`
     }`
     console.log('1');
 
-const server = new ApolloServer({typeDefs});
+
+const resolvers = {
+    Query: {
+        sessions: () => {
+            return sessions;
+        }
+    }
+}
+
+const server = new ApolloServer({typeDefs, resolvers});
 
 server
     .listen({
