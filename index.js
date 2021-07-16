@@ -16,7 +16,7 @@ const typeDefs = gql`
         room: String,
         day: String,
         format: String,
-        track: String,
+        track: String @deprecated(reason: "Dummy reason for deprecation"),
         level: String
     }`
     console.log('1');
